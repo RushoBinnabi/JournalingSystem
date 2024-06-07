@@ -218,15 +218,6 @@ public class DeleteJournalEntry extends Application {
     }
 
     /**
-     * the main() method runs the program.
-     * @param args the program being run.
-     */
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    /**
      * this mainMenu() method switches the screen to the main menu when the appropriate button
      * is clicked. it also closes the current screen.
      */

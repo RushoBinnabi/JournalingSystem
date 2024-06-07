@@ -179,13 +179,4 @@ public class ViewJournalEntries extends Application {
         JournalMainMenu journalMainMenu = new JournalMainMenu();
         journalMainMenu.start(new Stage());
     }
-
-    /**
-     * this main() method runs the program.
-     * @param args the program being run.
-     */
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

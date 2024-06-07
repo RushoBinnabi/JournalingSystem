@@ -233,15 +233,6 @@ public class OpenEditJournalEntry extends Application {
     }
 
     /**
-     * this main() method runs the program.
-     * @param args the program being run.
-     */
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    /**
      * this saveEntry() method saves the journal entry when the appropriate button is clicked.
      */
 
