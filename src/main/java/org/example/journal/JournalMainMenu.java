@@ -25,7 +25,7 @@ public class JournalMainMenu extends Application {
     private Scene journalSystemScene;
     private Stage journalSystemStage;
     private final CreateJournalEntry createJournalEntry = new CreateJournalEntry();
-    private final  DeleteJournalEntry deleteJournalEntry = new DeleteJournalEntry();
+    private final DeleteJournalEntry deleteJournalEntry = new DeleteJournalEntry();
     private final OpenEditJournalEntry openEditJournalEntry = new OpenEditJournalEntry();
     private final ReadJournalEntry readJournalEntry = new ReadJournalEntry();
     private final ViewJournalEntries viewJournalEntries = new ViewJournalEntries();

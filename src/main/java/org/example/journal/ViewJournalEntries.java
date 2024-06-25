@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ViewJournalEntries extends Application {
@@ -29,7 +30,6 @@ public class ViewJournalEntries extends Application {
     private final TextArea viewJournalEntries = new TextArea();
     private final Journal journal = new Journal();
     private final VBox vbox = new VBox();
-    private ArrayList<String> files;
 
     /**
      * this getBackToMainMenu() method gets the Button object for the main menu.
@@ -113,24 +113,6 @@ public class ViewJournalEntries extends Application {
     }
 
     /**
-     * this getFiles() method gets the ArrayList of files for the journal entries.
-     * @return the ArrayList of files for the journal entries.
-     */
-
-    public ArrayList<String> getFiles() {
-        return files;
-    }
-
-    /**
-     * this setFiles() method sets the ArrayList of files to a new ArrayList of files for the journal entries.
-     * @param files the ArrayList of files for the journal entries being set.
-     */
-
-    public void setFiles(ArrayList<String> files) {
-        this.files = new ArrayList<>(files);
-    }
-
-    /**
      * this stage() method has everything needed for the menu for viewing journal entries.
      * @param primaryStage the stage for the menu for viewing journal entries.
      */
@@ -160,12 +142,12 @@ public class ViewJournalEntries extends Application {
      */
 
     private void getEntries() {
-        setFiles(getJournal().viewJournalEntries());
-        if (getFiles().isEmpty()) {
+        ArrayList<String> files = getJournal().viewJournalEntries();
+        if (files.isEmpty()) {
             getViewJournalEntries().setText("No journal entries available");
         }
         else {
-            getViewJournalEntries().setText(String.valueOf(getFiles()).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
+            getViewJournalEntries().setText(String.valueOf(files).replaceAll(",", "").replace('[', ' ').replaceAll("]", ""));
         }
     }
 

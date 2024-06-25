@@ -39,8 +39,6 @@ public class CreateJournalEntry extends Application {
     private final VBox createJournalEntryFilenameVBox = new VBox();
     private final Journal journal = new Journal();
     private final VBox createJournalEntryConfirmationVBox = new VBox();
-    private String name;
-    private String contents;
 
     /**
      * this getCreateJournalEntry() method gets the Button object that will create the journal entry when pressed.
@@ -218,42 +216,6 @@ public class CreateJournalEntry extends Application {
     }
 
     /**
-     * this getContents() method gets the contents of the journal entry.
-     * @return the contents of the journal entry.
-     */
-
-    public String getContents() {
-        return contents;
-    }
-
-    /**
-     * this getName() method gets the name of the journal entry.
-     * @return the name of the journal entry.
-     */
-
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * this setContents() method sets the contents of the journal entry.
-     * @param contents the contents of the journal entry being set.
-     */
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
-    /**
-     * this setName() method sets the name of the journal entry.
-     * @param name the name of the journal entry being set.
-     */
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * this start() method contains everything for the menu for creating journal entries of the journaling system to function.
      * @param primaryStage the stage that has everything for the menu for creating journal entries of the journaling system.
      */
@@ -303,9 +265,7 @@ public class CreateJournalEntry extends Application {
      */
 
     private void createEntry() {
-        setContents(getCreateJournalEntryInput().getText());
-        setName(getCreateJournalEntryFilenameInput().getText());
-        getCreateJournalEntryConfirmation().setText(getJournal().createJournalEntry(getName(), getContents()));
+        getCreateJournalEntryConfirmation().setText(getJournal().createJournalEntry(getCreateJournalEntryFilenameInput().getText(), getCreateJournalEntryInput().getText()));
     }
 
     /**

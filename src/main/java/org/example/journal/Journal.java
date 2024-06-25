@@ -16,10 +16,8 @@ public class Journal {
 
     // this Journal class file has the name and the functionality of the journal files that will be used for the journal entries.
 
-    private static String journalEntryName;
     private static File fileHandler;
     private FileWriter fileWriter;
-    private static String errorMessage;
     private final ArrayList<String> listOfFiles = new ArrayList<>();
     public static double SCREEN_WIDTH = 800.0;
     public static double SCREEN_HEIGHT = 500.0;
@@ -30,24 +28,6 @@ public class Journal {
 
     public Journal() {
 
-    }
-
-    /**
-     * this getJournalEntryName() method gets the name of the journal entry.
-     * @return the name of the journal entry.
-     */
-
-    public static String getJournalEntryName() {
-        return journalEntryName;
-    }
-
-    /**
-     * this setJournalEntryName() method sets the name of the journal entry.
-     * @param journalEntryName the name of the journal entry being set.
-     */
-
-    public static void setJournalEntryName(String journalEntryName) {
-        Journal.journalEntryName = journalEntryName.concat(".txt"); // adds a text file extension so that users won't have to.
     }
 
     /**
@@ -87,24 +67,6 @@ public class Journal {
     }
 
     /**
-     * this getErrorMessage() method gets the error message if anything goes wrong with creating a journal entry.
-     * @return the error message.
-     */
-
-    public static String getErrorMessage() {
-        return errorMessage;
-    }
-
-    /**
-     * this setErrorMessage() method sets the error message if anything goes wrong with creating a journal entry.
-     * @param errorMessage the error message being set.
-     */
-
-    public static void setErrorMessage(String errorMessage) {
-        Journal.errorMessage = errorMessage;
-    }
-
-    /**
      * this getListOfFiles() method gets the arraylist of files.
      * @return the arraylist of files.
      */
@@ -121,30 +83,29 @@ public class Journal {
      */
 
     public String createJournalEntry(String name, String contents) {
-        setJournalEntryName(name);
+        String errorMessage;
         try {
-            setFileHandler(new File(getJournalEntryName()));
+            setFileHandler(new File(name.concat(".txt")));
             if (contents.isEmpty() && !name.isEmpty()) {
                 setFileWriter(new FileWriter(getFileHandler()));
                 getFileWriter().write(contents);
-                setErrorMessage("Empty Journal Entry Created");
+                errorMessage = "Empty Journal Entry Created";
                 getFileWriter().close();
             }
             else if (name.isEmpty()) {
-                setErrorMessage("Journal Entry Name Is Empty");
+                errorMessage = "Journal Entry Name Is Empty";
             }
             else {
                 setFileWriter(new FileWriter(getFileHandler()));
                 getFileWriter().write(contents);
-                setErrorMessage("Journal Entry Created");
+                errorMessage = "Journal Entry Created";
                 getFileWriter().close();
             }
         }
         catch (Exception e) {
-            setErrorMessage("Error. The journal entry could not be created.");
-            return getErrorMessage();
+            return "Error. The journal entry could not be created.";
         }
-        return getErrorMessage();
+        return errorMessage;
     }
 
     /**
@@ -155,12 +116,13 @@ public class Journal {
 
     public String readJournalEntry(String name) {
         String test;
+        String errorMessage;
         try {
             test = new String(Files.readAllBytes(Paths.get(name.concat(".txt"))));
         }
         catch (Exception e) {
-            setErrorMessage("Error. The journal entry could not be read.");
-            return getErrorMessage();
+            errorMessage = "Error. The journal entry could not be read.";
+            return errorMessage;
         }
         return test;
     }
@@ -190,29 +152,29 @@ public class Journal {
      */
 
     public String deleteJournalEntry(String name) {
+        String errorMessage;
         if (name.isEmpty()) {
-            setErrorMessage("Error. The journal entry could not be deleted because it doesn't exist");
-            return getErrorMessage();
+            errorMessage = "Error. The journal entry could not be deleted because it doesn't exist";
+            return errorMessage;
         }
         else {
-            setJournalEntryName(name);
             try {
-                setFileHandler(new File(getJournalEntryName()));
+                setFileHandler(new File(name.concat(".txt")));
                 if (getFileHandler().exists()) {
                     getFileHandler().delete(); // the result gets ignored because there's no need for it.
                 }
                 else {
-                    setErrorMessage("Error. The journal entry has already been deleted");
-                    return getErrorMessage();
+                    errorMessage = "Error. The journal entry has already been deleted";
+                    return errorMessage;
                 }
             }
             catch (Exception e) {
-                setErrorMessage("Error. The journal entry could not be deleted");
-                return getErrorMessage();
+                errorMessage = "Error. The journal entry could not be deleted";
+                return errorMessage;
             }
         }
-        setErrorMessage("Journal entry has been successfully deleted"); // the error message prompt gets reused to tell the user
+        errorMessage = "Journal entry has been successfully deleted"; // the error message prompt gets reused to tell the user
                                                                         // if the journal entry was successfully deleted or not.
-        return getErrorMessage();
+        return errorMessage;
     }
 }
